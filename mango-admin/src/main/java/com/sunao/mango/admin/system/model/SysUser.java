@@ -56,7 +56,7 @@ public class SysUser extends BaseModel {
     /**
      * 机构ID
      */
-    private Long detpId;
+    private Long deptId;
 
     /**
      * 非数据库字段 部门名称
@@ -145,12 +145,12 @@ public class SysUser extends BaseModel {
         return this;
     }
 
-    public Long getDetpId() {
-        return detpId;
+    public Long getDeptId() {
+        return deptId;
     }
 
-    public SysUser setDetpId(Long detpId) {
-        this.detpId = detpId;
+    public SysUser setDeptId(Long deptId) {
+        this.deptId = deptId;
         return this;
     }
 

@@ -20,6 +20,7 @@ public class FileUtils {
      */
     public static void downloadFile(HttpServletResponse response, File file, String newFileName) {
         try {
+            response.setContentType("application/octet-stream;charset=utf-8");
             response.setHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("ISO-8859-1"), "UTF-8"));
             BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
             InputStream is = new FileInputStream(file.getAbsolutePath());
