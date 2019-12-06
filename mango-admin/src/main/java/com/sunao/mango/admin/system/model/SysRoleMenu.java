@@ -11,11 +11,6 @@ import com.sunao.mango.admin.base.model.BaseModel;
  */
 public class SysRoleMenu extends BaseModel {
     /**
-     * 编号
-     */
-    private Long id;
-
-    /**
      * 角色ID
      */
     private Long roleId;
@@ -24,15 +19,6 @@ public class SysRoleMenu extends BaseModel {
      * 菜单ID
      */
     private Long menuId;
-
-    public Long getId() {
-        return id;
-    }
-
-    public SysRoleMenu setId(Long id) {
-        this.id = id;
-        return this;
-    }
 
     public Long getRoleId() {
         return roleId;

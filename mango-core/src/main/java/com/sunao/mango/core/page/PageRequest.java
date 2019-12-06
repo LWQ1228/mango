@@ -52,4 +52,8 @@ public class PageRequest {
         this.params = params;
         return this;
     }
+
+    public Object getParam(String key) {
+        return getParams().get(key);
+    }
 }

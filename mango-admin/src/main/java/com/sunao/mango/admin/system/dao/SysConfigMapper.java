@@ -1,6 +1,9 @@
 package com.sunao.mango.admin.system.dao;
 
 import com.sunao.mango.admin.system.model.SysConfig;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * SysConfigMapper
@@ -57,4 +60,27 @@ public interface SysConfigMapper {
      * @return 更新的数据条数
      */
     int updateByPrimaryKey(SysConfig record);
+
+    /**
+     * 分页查询
+     *
+     * @return 分页查询的数据
+     */
+    List<SysConfig> findPage();
+
+    /**
+     * 根据名称查询
+     *
+     * @param name 名称
+     * @return 查询的数据
+     */
+    List<SysConfig> findByName(@Param(value = "name") String name);
+
+    /**
+     * 根据名称分页查询
+     *
+     * @param name 名称
+     * @return 分页查询的数据
+     */
+    List<SysConfig> findPageByName(@Param(value = "name") String name);
 }

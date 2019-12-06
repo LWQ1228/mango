@@ -2,6 +2,8 @@ package com.sunao.mango.admin.system.dao;
 
 import com.sunao.mango.admin.system.model.SysDept;
 
+import java.util.List;
+
 /**
  * SysDeptMapper
  *
@@ -57,4 +59,18 @@ public interface SysDeptMapper {
      * @return 更新的数据条数
      */
     int updateByPrimaryKey(SysDept record);
+
+    /**
+     * 分页查询
+     *
+     * @return 分页查询的数据
+     */
+    List<SysDept> findPage();
+
+    /**
+     * 查询所有组织机构数据
+     *
+     * @return 所有组织机构数据
+     */
+    List<SysDept> findAll();
 }

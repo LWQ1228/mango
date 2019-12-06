@@ -1,6 +1,9 @@
 package com.sunao.mango.admin.system.dao;
 
 import com.sunao.mango.admin.system.model.SysLog;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * SysLogMapper
@@ -57,4 +60,19 @@ public interface SysLogMapper {
      * @return 更新的数据条数
      */
     int updateByPrimaryKey(SysLog record);
+
+    /**
+     * 分页查询
+     *
+     * @return 分页查询的数据
+     */
+    List<SysLog> findPage();
+
+    /**
+     * 根据用户名分页查询
+     *
+     * @param userName 用户名
+     * @return 分页查询的数据
+     */
+    List<SysLog> findPageByUserName(@Param(value = "userName") String userName);
 }

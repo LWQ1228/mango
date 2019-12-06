@@ -11,11 +11,6 @@ import com.sunao.mango.admin.base.model.BaseModel;
  */
 public class SysLog extends BaseModel {
     /**
-     * 编号
-     */
-    private Long id;
-
-    /**
      * 用户名
      */
     private String userName;
@@ -44,15 +39,6 @@ public class SysLog extends BaseModel {
      * IP地址
      */
     private String ip;
-
-    public Long getId() {
-        return id;
-    }
-
-    public SysLog setId(Long id) {
-        this.id = id;
-        return this;
-    }
 
     public String getUserName() {
         return userName;

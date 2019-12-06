@@ -1,6 +1,9 @@
 package com.sunao.mango.admin.system.dao;
 
 import com.sunao.mango.admin.system.model.SysUserRole;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * SysUserRoleMapper
@@ -57,4 +60,20 @@ public interface SysUserRoleMapper {
      * @return 更新的数据条数
      */
     int updateByPrimaryKey(SysUserRole record);
+
+    /**
+     * 根据用户ID查询数据
+     *
+     * @param userId 用户ID
+     * @return 查询的数据
+     */
+    List<SysUserRole> findUserRoles(@Param(value = "userId") Long userId);
+
+    /**
+     * 根据用户ID删除数据
+     *
+     * @param userId 用户ID
+     * @return 删除的数据条数
+     */
+    int deleteByUserId(@Param(value = "userId") Long userId);
 }

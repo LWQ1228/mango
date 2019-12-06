@@ -2,6 +2,8 @@ package com.sunao.mango.admin.system.model;
 
 import com.sunao.mango.admin.base.model.BaseModel;
 
+import java.util.List;
+
 /**
  * 菜单表
  *
@@ -10,11 +12,6 @@ import com.sunao.mango.admin.base.model.BaseModel;
  * @date 2019/12/05
  */
 public class SysMenu extends BaseModel {
-    /**
-     * 编号
-     */
-    private Long id;
-
     /**
      * 菜单名称
      */
@@ -50,14 +47,20 @@ public class SysMenu extends BaseModel {
      */
     private Integer orderNum;
 
-    public Long getId() {
-        return id;
-    }
+    /**
+     * 非数据库字段 父节点名称
+     */
+    private String parentName;
 
-    public SysMenu setId(Long id) {
-        this.id = id;
-        return this;
-    }
+    /**
+     * 非数据库字段 树级别
+     */
+    private Integer level;
+
+    /**
+     * 非数据库字段 子节点列表
+     */
+    private List<SysMenu> children;
 
     public String getName() {
         return name;
@@ -119,6 +122,33 @@ public class SysMenu extends BaseModel {
 
     public SysMenu setOrderNum(Integer orderNum) {
         this.orderNum = orderNum;
+        return this;
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public SysMenu setParentName(String parentName) {
+        this.parentName = parentName;
+        return this;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public SysMenu setLevel(Integer level) {
+        this.level = level;
+        return this;
+    }
+
+    public List<SysMenu> getChildren() {
+        return children;
+    }
+
+    public SysMenu setChildren(List<SysMenu> children) {
+        this.children = children;
         return this;
     }
 }

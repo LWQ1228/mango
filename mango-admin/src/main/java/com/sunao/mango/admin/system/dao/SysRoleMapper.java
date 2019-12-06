@@ -1,6 +1,9 @@
 package com.sunao.mango.admin.system.dao;
 
 import com.sunao.mango.admin.system.model.SysRole;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * SysRoleMapper
@@ -57,4 +60,34 @@ public interface SysRoleMapper {
      * @return 更新的数据条数
      */
     int updateByPrimaryKey(SysRole record);
+
+    /**
+     * 分页查询
+     *
+     * @return 分页查询的数据
+     */
+    List<SysRole> findPage();
+
+    /**
+     * 查询所有数据
+     *
+     * @return 查询的数据
+     */
+    List<SysRole> findAll();
+
+    /**
+     * 根据角色名称分页查询
+     *
+     * @param name 角色名称
+     * @return 分页查询的数据
+     */
+    List<SysRole> findPageByName(@Param(value = "name") String name);
+
+    /**
+     * 根据角色名称查询
+     *
+     * @param name 角色名称
+     * @return 查询的数据
+     */
+    List<SysRole> findByName(@Param(value = "name") String name);
 }

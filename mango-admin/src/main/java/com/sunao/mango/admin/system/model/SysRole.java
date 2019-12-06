@@ -11,11 +11,6 @@ import com.sunao.mango.admin.base.model.BaseModel;
  */
 public class SysRole extends BaseModel {
     /**
-     * 编号
-     */
-    private Long id;
-
-    /**
      * 角色名称
      */
     private String name;
@@ -24,15 +19,6 @@ public class SysRole extends BaseModel {
      * 备注
      */
     private String remark;
-
-    public Long getId() {
-        return id;
-    }
-
-    public SysRole setId(Long id) {
-        this.id = id;
-        return this;
-    }
 
     public String getName() {
         return name;

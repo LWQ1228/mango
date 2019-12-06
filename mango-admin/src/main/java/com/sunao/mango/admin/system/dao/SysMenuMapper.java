@@ -1,6 +1,9 @@
 package com.sunao.mango.admin.system.dao;
 
 import com.sunao.mango.admin.system.model.SysMenu;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * SysMenuMapper
@@ -57,4 +60,42 @@ public interface SysMenuMapper {
      * @return 更新的数据条数
      */
     int updateByPrimaryKey(SysMenu record);
+
+    /**
+     * 分页查询
+     *
+     * @return 分页查询的数据
+     */
+    List<SysMenu> findPage();
+
+    /**
+     * 根据名称分页查询
+     *
+     * @param name 名称
+     * @return 分页查询的数据
+     */
+    List<SysMenu> findPageByName(@Param(value = "name") String name);
+
+    /**
+     * 查询所有数据
+     *
+     * @return 查询的数据
+     */
+    List<SysMenu> findAll();
+
+    /**
+     * 根据用户名查询
+     *
+     * @param userName 用户名
+     * @return 查询的数据
+     */
+    List<SysMenu> findByUserName(@Param(value = "userName") String userName);
+
+    /**
+     * 根据角色ID查询
+     *
+     * @param roleId 角色ID
+     * @return 查询的数据
+     */
+    List<SysMenu> findRoleMenus(@Param(value = "roleId") Long roleId);
 }

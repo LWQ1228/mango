@@ -1,6 +1,9 @@
 package com.sunao.mango.admin.system.dao;
 
 import com.sunao.mango.admin.system.model.SysRoleMenu;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * SysRoleMenuMapper
@@ -57,4 +60,27 @@ public interface SysRoleMenuMapper {
      * @return 更新的数据条数
      */
     int updateByPrimaryKey(SysRoleMenu record);
+
+    /**
+     * 根据角色ID查询数据
+     *
+     * @param roleId 角色ID
+     * @return 查询的数据
+     */
+    List<SysRoleMenu> findRoleMenus(@Param(value = "roleId") Long roleId);
+
+    /**
+     * 查询所有数据
+     *
+     * @return 所有数据
+     */
+    List<SysRoleMenu> findAll();
+
+    /**
+     * 根据角色ID删除数据
+     *
+     * @param roleId 角色ID
+     * @return 删除的数据条数
+     */
+    int deleteByRoleId(@Param(value = "roleId") Long roleId);
 }

@@ -1,6 +1,7 @@
 package com.sunao.mango.admin.system.dao;
 
 import com.sunao.mango.admin.system.model.SysUser;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -61,16 +62,34 @@ public interface SysUserMapper {
     int updateByPrimaryKey(SysUser record);
 
     /**
-     * 查询所有用户数据
-     *
-     * @return 所有用户数据
-     */
-    List<SysUser> findAll();
-
-    /**
      * 分页查询
      *
      * @return 分页查询的数据
      */
     List<SysUser> findPage();
+
+    /**
+     * 根据用户名称查询数据
+     *
+     * @param name 用户名称
+     * @return 用户数据
+     */
+    SysUser findByName(@Param(value = "name") String name);
+
+    /**
+     * 根据用户名查询数据
+     *
+     * @param name 用户名
+     * @return 查询的数据
+     */
+    List<SysUser> findPageByName(@Param(value = "name") String name);
+
+    /**
+     * 根据用户名和邮箱查询数据
+     *
+     * @param name  用户名
+     * @param email 邮箱
+     * @return 查询的数据
+     */
+    List<SysUser> findPageByNameAndEmail(@Param(value = "name") String name, @Param(value = "email") String email);
 }

@@ -2,6 +2,9 @@ package com.sunao.mango.admin.system.model;
 
 import com.sunao.mango.admin.base.model.BaseModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 用户表
  *
@@ -10,11 +13,6 @@ import com.sunao.mango.admin.base.model.BaseModel;
  * @date 2019/12/05
  */
 public class SysUser extends BaseModel {
-    /**
-     * 编号
-     */
-    private Long id;
-
     /**
      * 用户名
      */
@@ -60,14 +58,20 @@ public class SysUser extends BaseModel {
      */
     private Long detpId;
 
-    public Long getId() {
-        return id;
-    }
+    /**
+     * 非数据库字段 部门名称
+     */
+    private String deptName;
 
-    public SysUser setId(Long id) {
-        this.id = id;
-        return this;
-    }
+    /**
+     * 非数据库字段 角色名称
+     */
+    private String roleNames;
+
+    /**
+     * 非数据库字段 用户角色列表
+     */
+    private List<SysUserRole> userRoles = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -147,6 +151,33 @@ public class SysUser extends BaseModel {
 
     public SysUser setDetpId(Long detpId) {
         this.detpId = detpId;
+        return this;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public SysUser setDeptName(String deptName) {
+        this.deptName = deptName;
+        return this;
+    }
+
+    public String getRoleNames() {
+        return roleNames;
+    }
+
+    public SysUser setRoleNames(String roleNames) {
+        this.roleNames = roleNames;
+        return this;
+    }
+
+    public List<SysUserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public SysUser setUserRoles(List<SysUserRole> userRoles) {
+        this.userRoles = userRoles;
         return this;
     }
 }

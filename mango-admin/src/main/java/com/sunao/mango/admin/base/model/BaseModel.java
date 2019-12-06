@@ -11,6 +11,11 @@ import java.util.Date;
  */
 public class BaseModel {
     /**
+     * 编号
+     */
+    private Long id;
+
+    /**
      * 创建人
      */
     private String createBy;
@@ -34,6 +39,15 @@ public class BaseModel {
      * 是否删除（-1：已删除 、0：正常）
      */
     private Integer delFlag;
+
+    public Long getId() {
+        return id;
+    }
+
+    public BaseModel setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public String getCreateBy() {
         return createBy;
