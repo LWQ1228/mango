@@ -1,1 +1,1 @@
-# mango-study
+# mango
