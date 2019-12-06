@@ -214,4 +214,10 @@
         <include refid="Base_Column_List"/>
         from t_sys_user
     </select>
+    <!-- 分页查询数据 -->
+    <select id="findPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_sys_user
+    </select>
 </mapper>

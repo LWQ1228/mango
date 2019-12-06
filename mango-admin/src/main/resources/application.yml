@@ -41,3 +41,15 @@ spring:
       pool-prepared-statements: true
       #要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
       max-open-prepared-statements: 50
+#pagehelper
+pagehelper:
+  #标识是哪一种数据库，设计上必须
+  helper-dialect: mysql
+  #分页参数合理化，默认false禁用
+  #启用合理化时，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页
+  #禁用合理化时，如果pageNum<1或pageNum>pages会返回空数据
+  reasonable: true
+  #支持方法参数
+  support-methods-arguments: true
+  #参数
+  params: count=countSql

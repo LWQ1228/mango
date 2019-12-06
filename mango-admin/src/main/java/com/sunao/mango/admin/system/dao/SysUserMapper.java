@@ -66,4 +66,11 @@ public interface SysUserMapper {
      * @return 所有用户数据
      */
     List<SysUser> findAll();
+
+    /**
+     * 分页查询
+     *
+     * @return 分页查询的数据
+     */
+    List<SysUser> findPage();
 }
