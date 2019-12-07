@@ -270,6 +270,7 @@ public class SysUserServiceImpl implements SysUserService {
             row.getCell(++columnIndex).setCellValue(user.getDeptName());
             row.getCell(++columnIndex).setCellValue(user.getRoleNames());
             row.getCell(++columnIndex).setCellValue(user.getEmail());
+            row.getCell(++columnIndex).setCellValue(user.getMobile());
             row.getCell(++columnIndex).setCellValue(user.getStatus());
             row.getCell(++columnIndex).setCellValue(user.getAvatar());
             row.getCell(++columnIndex).setCellValue(user.getCreateBy());
