@@ -93,6 +93,13 @@
             <version>1.2.17</version>
         </dependency>
 
+        <!-- 验证码实现依赖包kaptcha -->
+        <dependency>
+            <groupId>com.github.axet</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>0.0.9</version>
+        </dependency>
+
         <dependency>
             <groupId>com.sunao</groupId>
             <artifactId>mango-core</artifactId>
