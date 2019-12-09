@@ -17,6 +17,7 @@
         <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy"/>
         <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime"/>
         <result column="del_flag" jdbcType="TINYINT" property="delFlag"/>
+        <result column="deptName" jdbcType="VARCHAR" property="deptName"/>
     </resultMap>
     <sql id="Base_Column_List">
       id, name, nick_name, avatar, password, salt, email, mobile, status, dept_id, create_by,
@@ -33,25 +34,22 @@
     where id = #{id,jdbcType=BIGINT}
     </delete>
     <insert id="insert" parameterType="com.sunao.mango.admin.system.model.SysUser">
-    insert into t_sys_user (id, name, nick_name, 
+    insert into t_sys_user (name, nick_name,
       avatar, password, salt, 
       email, mobile, status, 
-      dept_id, create_by, create_time,
-      last_update_by, last_update_time, del_flag
+      dept_id, create_by,
+      last_update_by, del_flag
       )
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+    values (#{name,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
       #{avatar,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
-      #{deptId,jdbcType=BIGINT}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
-      #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT}
+      #{deptId,jdbcType=BIGINT}, #{createBy,jdbcType=VARCHAR},
+      #{lastUpdateBy,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}
       )
     </insert>
     <insert id="insertSelective" parameterType="com.sunao.mango.admin.system.model.SysUser">
         insert into t_sys_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
             <if test="name != null">
                 name,
             </if>
@@ -82,23 +80,14 @@
             <if test="createBy != null">
                 create_by,
             </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
             <if test="lastUpdateBy != null">
                 last_update_by,
-            </if>
-            <if test="lastUpdateTime != null">
-                last_update_time,
             </if>
             <if test="delFlag != null">
                 del_flag,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
-            </if>
             <if test="name != null">
                 #{name,jdbcType=VARCHAR},
             </if>
@@ -129,14 +118,8 @@
             <if test="createBy != null">
                 #{createBy,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="lastUpdateBy != null">
                 #{lastUpdateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="lastUpdateTime != null">
-                #{lastUpdateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="delFlag != null">
                 #{delFlag,jdbcType=TINYINT},
@@ -176,14 +159,8 @@
             <if test="createBy != null">
                 create_by = #{createBy,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="lastUpdateBy != null">
                 last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="lastUpdateTime != null">
-                last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="delFlag != null">
                 del_flag = #{delFlag,jdbcType=TINYINT},
@@ -202,10 +179,7 @@
       mobile = #{mobile,jdbcType=VARCHAR},
       status = #{status,jdbcType=TINYINT},
       dept_id = #{deptId,jdbcType=BIGINT},
-      create_by = #{createBy,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
-      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
       del_flag = #{delFlag,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
     </update>

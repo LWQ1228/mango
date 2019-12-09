@@ -27,21 +27,18 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
     <insert id="insert" parameterType="com.sunao.mango.admin.system.model.SysDept">
-    insert into t_sys_dept (id, name, parent_id, 
-      order_num, create_by, create_time, 
-      last_update_by, last_update_time, del_flag
+    insert into t_sys_dept (name, parent_id,
+      order_num, create_by,
+      last_update_by, del_flag
       )
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
-      #{orderNum,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT}
+    values (#{name,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT},
+      #{orderNum,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR},
+      #{lastUpdateBy,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}
       )
   </insert>
     <insert id="insertSelective" parameterType="com.sunao.mango.admin.system.model.SysDept">
         insert into t_sys_dept
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
             <if test="name != null">
                 name,
             </if>
@@ -54,23 +51,14 @@
             <if test="createBy != null">
                 create_by,
             </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
             <if test="lastUpdateBy != null">
                 last_update_by,
-            </if>
-            <if test="lastUpdateTime != null">
-                last_update_time,
             </if>
             <if test="delFlag != null">
                 del_flag,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
-            </if>
             <if test="name != null">
                 #{name,jdbcType=VARCHAR},
             </if>
@@ -83,14 +71,8 @@
             <if test="createBy != null">
                 #{createBy,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="lastUpdateBy != null">
                 #{lastUpdateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="lastUpdateTime != null">
-                #{lastUpdateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="delFlag != null">
                 #{delFlag,jdbcType=TINYINT},
@@ -112,14 +94,8 @@
             <if test="createBy != null">
                 create_by = #{createBy,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="lastUpdateBy != null">
                 last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="lastUpdateTime != null">
-                last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="delFlag != null">
                 del_flag = #{delFlag,jdbcType=TINYINT},
@@ -132,10 +108,7 @@
     set name = #{name,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=BIGINT},
       order_num = #{orderNum,jdbcType=INTEGER},
-      create_by = #{createBy,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
-      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
       del_flag = #{delFlag,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>

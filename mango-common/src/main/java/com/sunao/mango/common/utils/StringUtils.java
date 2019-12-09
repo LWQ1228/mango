@@ -17,4 +17,14 @@ public class StringUtils {
     public static boolean isEmpty(String value) {
         return value == null || "".equals(value) || "null".equals(value) || "undefined".equals(value);
     }
+
+    /**
+     * 判断不为空操作
+     *
+     * @param value 值
+     * @return 判断结果
+     */
+    public static boolean isNotEmpty(String value) {
+        return !isEmpty(value);
+    }
 }

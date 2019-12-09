@@ -2,8 +2,18 @@ package com.sunao.mango.admin.system.controller;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
+import com.sunao.mango.admin.security.JwtAuthenticatioToken;
+import com.sunao.mango.admin.system.model.SysUser;
+import com.sunao.mango.admin.system.service.SysUserService;
+import com.sunao.mango.admin.system.vo.LoginBean;
+import com.sunao.mango.admin.util.PasswordUtils;
+import com.sunao.mango.admin.util.SecurityUtils;
 import com.sunao.mango.common.utils.IoUtils;
+import com.sunao.mango.core.http.HttpResult;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -26,6 +36,10 @@ import java.io.IOException;
 public class SysLoginController {
     @Resource
     private Producer producer;
+    @Resource
+    private SysUserService sysUserService;
+    @Resource
+    private AuthenticationManager authenticationManager;
 
     /**
      * 验证码生成接口
@@ -49,4 +63,44 @@ public class SysLoginController {
         ImageIO.write(image, "jpg", out);
         IoUtils.closeQuietly(out);
     }
+
+    /**
+     * 登录接口
+     *
+     * @param loginBean 登录接口对象
+     * @param request   请求参数
+     * @return 调用结果
+     * @throws IOException 异常信息
+     */
+    @PostMapping(value = "/login")
+    public HttpResult login(@RequestBody LoginBean loginBean, HttpServletRequest request) throws IOException {
+        String username = loginBean.getAccount();
+        String password = loginBean.getPassword();
+        String captcha = loginBean.getCaptcha();
+        // 从session中获取之前保存的验证码跟前台传来的验证码进行匹配
+        Object kaptcha = request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
+        if (kaptcha == null) {
+            return HttpResult.error("验证码已失效");
+        }
+        if (!captcha.equals(kaptcha)) {
+            return HttpResult.error("验证码不正确");
+        }
+        // 用户信息
+        SysUser user = sysUserService.findByName(username);
+        // 账号不存在、密码错误
+        if (user == null) {
+            return HttpResult.error("账号不存在");
+        }
+        if (!PasswordUtils.matches(user.getSalt(), password, user.getPassword())) {
+            return HttpResult.error("密码不正确");
+        }
+        // 账号锁定
+        if (user.getStatus() == 0) {
+            return HttpResult.error("账号已被锁定,请联系管理员");
+        }
+        // 系统登录认证
+        JwtAuthenticatioToken token = SecurityUtils.login(request, username, password, authenticationManager);
+        return HttpResult.ok(token);
+    }
+
 }

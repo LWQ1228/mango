@@ -24,19 +24,14 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
     <insert id="insert" parameterType="com.sunao.mango.admin.system.model.SysRoleMenu">
-    insert into t_sys_role_menu (id, role_id, menu_id, 
-      create_by, create_time, last_update_by, 
-      last_update_time)
-    values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{menuId,jdbcType=BIGINT}, 
-      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, 
-      #{lastUpdateTime,jdbcType=TIMESTAMP})
+    insert into t_sys_role_menu (role_id, menu_id,
+      create_by, last_update_by)
+    values (#{roleId,jdbcType=BIGINT}, #{menuId,jdbcType=BIGINT},
+      #{createBy,jdbcType=VARCHAR}, #{lastUpdateBy,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="com.sunao.mango.admin.system.model.SysRoleMenu">
         insert into t_sys_role_menu
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
             <if test="roleId != null">
                 role_id,
             </if>
@@ -46,20 +41,11 @@
             <if test="createBy != null">
                 create_by,
             </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
             <if test="lastUpdateBy != null">
                 last_update_by,
             </if>
-            <if test="lastUpdateTime != null">
-                last_update_time,
-            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
-            </if>
             <if test="roleId != null">
                 #{roleId,jdbcType=BIGINT},
             </if>
@@ -69,14 +55,8 @@
             <if test="createBy != null">
                 #{createBy,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="lastUpdateBy != null">
                 #{lastUpdateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="lastUpdateTime != null">
-                #{lastUpdateTime,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
@@ -92,14 +72,8 @@
             <if test="createBy != null">
                 create_by = #{createBy,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="lastUpdateBy != null">
                 last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="lastUpdateTime != null">
-                last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
         where id = #{id,jdbcType=BIGINT}
@@ -108,10 +82,7 @@
     update t_sys_role_menu
     set role_id = #{roleId,jdbcType=BIGINT},
       menu_id = #{menuId,jdbcType=BIGINT},
-      create_by = #{createBy,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
-      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
     <select id="findRoleMenus" parameterType="java.lang.Long" resultMap="BaseResultMap">

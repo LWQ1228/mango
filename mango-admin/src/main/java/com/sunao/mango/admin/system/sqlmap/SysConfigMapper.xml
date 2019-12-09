@@ -30,23 +30,17 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
     <insert id="insert" parameterType="com.sunao.mango.admin.system.model.SysConfig">
-    insert into t_sys_config (id, value, name, 
-      type, description, sort, 
-      remarks, create_by, create_time, 
-      last_update_by, last_update_time, del_flag
-      )
-    values (#{id,jdbcType=BIGINT}, #{value,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+    insert into t_sys_config (value, name,
+      type, description, sort,  remarks, create_by,  last_update_by, del_flag)
+    values (#{value,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
       #{type,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{sort,jdbcType=DECIMAL}, 
-      #{remarks,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT}
+      #{remarks,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR},
+      #{lastUpdateBy,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}
       )
   </insert>
     <insert id="insertSelective" parameterType="com.sunao.mango.admin.system.model.SysConfig">
         insert into t_sys_config
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
             <if test="value != null">
                 value,
             </if>
@@ -68,23 +62,14 @@
             <if test="createBy != null">
                 create_by,
             </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
             <if test="lastUpdateBy != null">
                 last_update_by,
-            </if>
-            <if test="lastUpdateTime != null">
-                last_update_time,
             </if>
             <if test="delFlag != null">
                 del_flag,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
-            </if>
             <if test="value != null">
                 #{value,jdbcType=VARCHAR},
             </if>
@@ -106,14 +91,8 @@
             <if test="createBy != null">
                 #{createBy,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="lastUpdateBy != null">
                 #{lastUpdateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="lastUpdateTime != null">
-                #{lastUpdateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="delFlag != null">
                 #{delFlag,jdbcType=TINYINT},
@@ -144,14 +123,8 @@
             <if test="createBy != null">
                 create_by = #{createBy,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="lastUpdateBy != null">
                 last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="lastUpdateTime != null">
-                last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="delFlag != null">
                 del_flag = #{delFlag,jdbcType=TINYINT},
@@ -167,10 +140,7 @@
       description = #{description,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=DECIMAL},
       remarks = #{remarks,jdbcType=VARCHAR},
-      create_by = #{createBy,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
-      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
       del_flag = #{delFlag,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>

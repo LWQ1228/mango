@@ -1,4 +1,4 @@
-package com.sunao.mango.common.utils;
+package com.sunao.mango.admin.util;
 
 import java.util.UUID;
 

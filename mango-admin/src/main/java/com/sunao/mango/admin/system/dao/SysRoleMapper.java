@@ -43,7 +43,7 @@ public interface SysRoleMapper {
      * @param id 物理主键
      * @return 查询到的数据
      */
-    SysRole selectByPrimaryKey(Long id);
+    SysRole selectByPrimaryKey(@Param(value = "id") Long id);
 
     /**
      * 根据主键更新数据

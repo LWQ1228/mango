@@ -29,21 +29,18 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
     <insert id="insert" parameterType="com.sunao.mango.admin.system.model.SysLog">
-    insert into t_sys_log (id, user_name, operation, 
+    insert into t_sys_log (user_name, operation,
       method, params, time, 
-      ip, create_by, create_time, 
-      last_update_by, last_update_time)
-    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{operation,jdbcType=VARCHAR}, 
+      ip, create_by,
+      last_update_by)
+    values (#{userName,jdbcType=VARCHAR}, #{operation,jdbcType=VARCHAR},
       #{method,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{time,jdbcType=BIGINT}, 
-      #{ip,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP})
+      #{ip,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR},
+      #{lastUpdateBy,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="com.sunao.mango.admin.system.model.SysLog">
         insert into t_sys_log
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
             <if test="userName != null">
                 user_name,
             </if>
@@ -65,20 +62,11 @@
             <if test="createBy != null">
                 create_by,
             </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
             <if test="lastUpdateBy != null">
                 last_update_by,
             </if>
-            <if test="lastUpdateTime != null">
-                last_update_time,
-            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
-            </if>
             <if test="userName != null">
                 #{userName,jdbcType=VARCHAR},
             </if>
@@ -100,14 +88,8 @@
             <if test="createBy != null">
                 #{createBy,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="lastUpdateBy != null">
                 #{lastUpdateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="lastUpdateTime != null">
-                #{lastUpdateTime,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
@@ -135,14 +117,8 @@
             <if test="createBy != null">
                 create_by = #{createBy,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="lastUpdateBy != null">
                 last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
-            </if>
-            <if test="lastUpdateTime != null">
-                last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
         where id = #{id,jdbcType=BIGINT}
@@ -155,10 +131,7 @@
       params = #{params,jdbcType=VARCHAR},
       time = #{time,jdbcType=BIGINT},
       ip = #{ip,jdbcType=VARCHAR},
-      create_by = #{createBy,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
-      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
     <select id="findPage" resultMap="BaseResultMap">
