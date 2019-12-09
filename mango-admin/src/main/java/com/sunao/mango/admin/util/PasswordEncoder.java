@@ -10,7 +10,7 @@ import java.security.MessageDigest;
  * @date 2019/12/6 17:06
  */
 public class PasswordEncoder {
-    private final static String[] hexDigits = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
+    private final static String[] HEX_DIGITS = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
 
     private final static String MD5 = "MD5";
     private final static String SHA = "SHA";
@@ -96,6 +96,6 @@ public class PasswordEncoder {
         }
         int d1 = n / 16;
         int d2 = n % 16;
-        return hexDigits[d1] + hexDigits[d2];
+        return HEX_DIGITS[d1] + HEX_DIGITS[d2];
     }
 }
