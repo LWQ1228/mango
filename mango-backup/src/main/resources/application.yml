@@ -2,8 +2,20 @@
 server:
   port: 8002
 spring:
+  #服务监控信息
+  boot:
+    admin:
+      client:
+        url: "http://localhost:8003"
+  #应用名称
   application:
     name: mango-backup
+#服务监控信息 开放全部监控接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 #backup datasource
 mango:
   backup:

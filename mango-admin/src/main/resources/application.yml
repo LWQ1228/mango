@@ -7,6 +7,15 @@ server:
 #    username: root
 #    password: root
 spring:
+  #应用名称
+  application:
+    name: mango-admin
+  #服务监控信息
+  boot:
+    admin:
+      client:
+        url: "http://localhost:8003"
+  #数据源信息
   datasource:
     name: druidDataSource
     type: com.alibaba.druid.pool.DruidDataSource
@@ -41,6 +50,12 @@ spring:
       pool-prepared-statements: true
       #要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
       max-open-prepared-statements: 50
+#服务监控信息 开放全部监控接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 #pagehelper
 pagehelper:
   #标识是哪一种数据库，设计上必须
