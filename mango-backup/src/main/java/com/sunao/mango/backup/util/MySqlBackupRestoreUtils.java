@@ -13,6 +13,15 @@ import java.io.*;
  */
 public class MySqlBackupRestoreUtils {
     /**
+     * 文件夹分隔符
+     */
+    private static final String WIN_SEPARATOR = "/";
+    /**
+     * WIN
+     */
+    private static final String WIN = "win";
+
+    /**
      * 备份数据库
      *
      * @param paramBean 数据库备份还原参数Bean
@@ -33,7 +42,7 @@ public class MySqlBackupRestoreUtils {
             // 如果目录不存在则创建
             backupFolderFile.mkdirs();
         }
-        if (!backupFolderPath.endsWith(File.separator) && !backupFolderPath.endsWith("/")) {
+        if (!backupFolderPath.endsWith(File.separator) && !backupFolderPath.endsWith(WIN_SEPARATOR)) {
             backupFolderPath = backupFolderPath + File.separator;
         }
         // 拼接命令行的命令
@@ -125,7 +134,7 @@ public class MySqlBackupRestoreUtils {
         String os = System.getProperty("os.name");
         String shell = "/bin/bash";
         String c = "-c";
-        if (os.toLowerCase().startsWith("win")) {
+        if (os.toLowerCase().startsWith(WIN)) {
             shell = "cmd";
             c = "/c";
         }
