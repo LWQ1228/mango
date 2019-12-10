@@ -2,14 +2,20 @@ server:
   port: 8001
 #spring:
 #  datasource:
-#    driverClassName: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/mango?serverTimezone=UTC&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
+#    driverClassName: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/mango?serverTimezone=UTC&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8&useSSL=false
 #    username: root
 #    password: root
 spring:
   #应用名称
   application:
     name: mango-admin
+  cloud:
+    host: localhost
+    port: 8500
+    discovery:
+      #注册到consul的服务名称
+      serviceName: ${spring.application.name}
   #服务监控信息
   boot:
     admin:
@@ -20,8 +26,8 @@ spring:
     name: druidDataSource
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/mango?serverTimezone=UTC&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/mango?serverTimezone=UTC&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8&useSSL=false
       username: root
       password: root
       #配置监控统计拦截的filters，去掉后监控界面SQL无法进行统计，wall用于防火墙
@@ -50,12 +56,15 @@ spring:
       pool-prepared-statements: true
       #要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
       max-open-prepared-statements: 50
-#服务监控信息 开放全部监控接口
+#服务监控信息 开放健康检查接口
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
 #pagehelper
 pagehelper:
   #标识是哪一种数据库，设计上必须

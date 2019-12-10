@@ -3,3 +3,18 @@ server:
 spring:
   application:
     name: mango-monitor
+  cloud:
+    host: localhost
+    port: 8500
+    discovery:
+      #注册到consul的服务名称
+      serviceName: ${spring.application.name}
+# 开放健康检查接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
