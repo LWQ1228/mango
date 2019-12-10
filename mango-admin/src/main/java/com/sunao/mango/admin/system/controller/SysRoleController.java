@@ -6,6 +6,7 @@ import com.sunao.mango.admin.system.model.SysRoleMenu;
 import com.sunao.mango.admin.system.service.SysRoleService;
 import com.sunao.mango.core.http.HttpResult;
 import com.sunao.mango.core.page.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -30,6 +31,7 @@ public class SysRoleController {
      * @param record 数据信息
      * @return 保存结果
      */
+    @PreAuthorize("hasAuthority('sys:role:add') AND hasAuthority('sys:role:edit')")
     @PostMapping(value = "/save")
     public HttpResult save(@RequestBody SysRole record) {
         SysRole role = sysRoleService.findById(record.getId());
@@ -53,6 +55,7 @@ public class SysRoleController {
      * @param records 数据集合
      * @return 删除结果
      */
+    @PreAuthorize("hasAuthority('sys:role:delete')")
     @PostMapping(value = "/delete")
     public HttpResult delete(@RequestBody List<SysRole> records) {
         return HttpResult.ok(sysRoleService.delete(records));
@@ -64,6 +67,7 @@ public class SysRoleController {
      * @param pageRequest 查询条件
      * @return 查询结果
      */
+    @PreAuthorize("hasAuthority('sys:role:view')")
     @PostMapping(value = "/findPage")
     public HttpResult findPage(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(sysRoleService.findPage(pageRequest));
@@ -74,6 +78,7 @@ public class SysRoleController {
      *
      * @return 所有数据
      */
+    @PreAuthorize("hasAuthority('sys:role:view')")
     @GetMapping(value = "/findAll")
     public HttpResult findAll() {
         return HttpResult.ok(sysRoleService.findAll());
@@ -85,6 +90,7 @@ public class SysRoleController {
      * @param roleId 角色ID
      * @return 菜单列表
      */
+    @PreAuthorize("hasAuthority('sys:role:view')")
     @GetMapping(value = "/findRoleMenus")
     public HttpResult findRoleMenus(@RequestParam Long roleId) {
         return HttpResult.ok(sysRoleService.findRoleMenus(roleId));
@@ -96,6 +102,7 @@ public class SysRoleController {
      * @param records 菜单列表
      * @return 保存结果
      */
+    @PreAuthorize("hasAuthority('sys:role:view')")
     @PostMapping(value = "/saveRoleMenus")
     public HttpResult saveRoleMenus(@RequestBody List<SysRoleMenu> records) {
         for (SysRoleMenu record : records) {

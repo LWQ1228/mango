@@ -7,6 +7,7 @@ import com.sunao.mango.admin.util.PasswordUtils;
 import com.sunao.mango.common.utils.FileUtils;
 import com.sunao.mango.core.http.HttpResult;
 import com.sunao.mango.core.page.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -32,6 +33,7 @@ public class SysUserController {
      * @param record 数据信息
      * @return 保存结果
      */
+    @PreAuthorize("hasAuthority('sys:user:add') AND hasAuthority('sys:user:edit')")
     @PostMapping(value = "/save")
     public HttpResult save(@RequestBody SysUser record) {
         SysUser user = sysUserService.findById(record.getId());
@@ -68,6 +70,7 @@ public class SysUserController {
      * @param records 数据集合
      * @return 删除结果
      */
+    @PreAuthorize("hasAuthority('sys:user:delete')")
     @PostMapping(value = "/delete")
     public HttpResult delete(@RequestBody List<SysUser> records) {
         for (SysUser record : records) {
@@ -85,6 +88,7 @@ public class SysUserController {
      * @param name 用户名
      * @return 用户信息
      */
+    @PreAuthorize("hasAuthority('sys:user:view')")
     @GetMapping(value = "/findByName")
     public HttpResult findByName(@RequestParam String name) {
         return HttpResult.ok(sysUserService.findByName(name));
@@ -96,6 +100,7 @@ public class SysUserController {
      * @param name 用户名
      * @return 权限列表
      */
+    @PreAuthorize("hasAuthority('sys:user:view')")
     @GetMapping(value = "/findPermissions")
     public HttpResult findPermissions(@RequestParam String name) {
         return HttpResult.ok(sysUserService.findPermissions(name));
@@ -107,6 +112,7 @@ public class SysUserController {
      * @param userId 用户ID
      * @return 用户角色列表
      */
+    @PreAuthorize("hasAuthority('sys:user:view')")
     @GetMapping(value = "/findUserRoles")
     public HttpResult findUserRoles(@RequestParam Long userId) {
         return HttpResult.ok(sysUserService.findUserRoles(userId));
@@ -117,6 +123,7 @@ public class SysUserController {
      *
      * @return 分页的用户数据
      */
+    @PreAuthorize("hasAuthority('sys:user:view')")
     @PostMapping(value = "/findPage")
     public HttpResult findPage(@RequestBody PageRequest pageRequest) {
         return HttpResult.ok(sysUserService.findPage(pageRequest));
@@ -128,11 +135,10 @@ public class SysUserController {
      * @param pageRequest 请求参数
      * @param res         响应参数
      */
+    @PreAuthorize("hasAuthority('sys:user:view')")
     @PostMapping(value = "/exportExcelUser")
     public void exportExcelUser(@RequestBody PageRequest pageRequest, HttpServletResponse res) {
         File file = sysUserService.createUserExcelFile(pageRequest);
         FileUtils.downloadFile(res, file, file.getName());
     }
-
-
 }
