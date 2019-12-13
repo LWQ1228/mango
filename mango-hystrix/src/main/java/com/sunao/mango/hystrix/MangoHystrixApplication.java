@@ -7,7 +7,7 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 import org.springframework.cloud.netflix.turbine.EnableTurbine;
 
 /**
- * MangoHystrixApplication
+ * MangoHystrixApplication 服务熔断（Hystrix、Turbine）
  * 添加@EnableTurbine注解，开启Turbine支持
  * 添加@EnableHystrixDashboard注解，开启熔断监控支持
  * 添加@EnableDiscoveryClient注解，开启服务发现支持

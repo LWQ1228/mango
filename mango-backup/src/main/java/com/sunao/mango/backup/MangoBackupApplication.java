@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
- * MangoBackupApplication
+ * MangoBackupApplication 数据备份还原
  * 添加@EnableDiscoveryClient注解，开启服务发现支持
  *
  * @author liuwenqing

@@ -1,0 +1,23 @@
+server:
+  port: 8010
+spring:
+  application:
+    name: mango-zuul
+  cloud:
+    host: localhost
+    port: 8500
+    discovery:
+      #注册到consul的服务名称
+      serviceName: ${spring.application.name}
+zuul:
+  #配置接口前缀，如下：即在所有API接口上加个v1版本号
+  prefix: /v1
+  routes:
+    ribbon:
+      path: /ribbon/**
+      #转发到消费者 /ribbon/
+      serviceId: mango-consumer
+    feign:
+      path: /feign/**
+      #转发到消费者 /feign/
+      serviceId: mango-consumer

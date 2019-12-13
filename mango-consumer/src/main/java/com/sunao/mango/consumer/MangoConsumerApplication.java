@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * MangoConsumerApplication
+ * MangoConsumerApplication 服务消费（Ribbon、Feign）
  * 添加@EnableFeignClients注解，开启扫描Spring Cloud Feign客户端的功能
  * 添加@EnableDiscoveryClient注解，开启服务发现支持
  *

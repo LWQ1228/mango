@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
- * MangoMonitorApplication
+ * MangoMonitorApplication 系统服务监控
  * 添加@EnableAdminServer注解，开启监控服务
  * 添加@EnableDiscoveryClient注解，开启服务发现支持
  *
