@@ -1,0 +1,25 @@
+server:
+  port: 8005
+spring:
+  application:
+    name: mango-producer
+  cloud:
+    host: localhost
+    port: 8500
+    discovery:
+      #注册到consul的服务名称
+      serviceName: ${spring.application.name}
+  #服务监控信息
+  boot:
+    admin:
+      client:
+        url: "http://localhost:8003"
+# 开放健康检查接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
