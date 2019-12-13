@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @FeignClient(name = "mango-producer")
 public interface MangoProducerService {
+    /**
+     * Feign接口
+     *
+     * @return Feign调用结果
+     */
     @RequestMapping("/hello")
     String hello();
 }
