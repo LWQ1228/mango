@@ -7,14 +7,21 @@ spring:
     host: localhost
     port: 8500
     discovery:
-      #×¢²áµ½consulµÄ·şÎñÃû³Æ
+      # æ³¨å†Œåˆ°consulçš„æœåŠ¡åç§°
       serviceName: ${spring.application.name}
-  #·şÎñ¼à¿ØĞÅÏ¢
+  # æœåŠ¡ç›‘æ§ä¿¡æ¯
   boot:
     admin:
       client:
         url: "http://localhost:8003"
-# ¿ª·Å½¡¿µ¼ì²é½Ó¿Ú
+  #æ·»åŠ ZipKiné…ç½®
+  zipkin:
+    base-url: "http://localhost:9411/"
+  sleuth:
+    sampler:
+      #æ ·å“é‡‡é›†æ•°é‡ï¼Œé»˜è®¤0.1
+      probability: 1
+# å¼€æ”¾å¥åº·æ£€æŸ¥æ¥å£
 management:
   endpoints:
     web:
@@ -23,7 +30,7 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
-#¿ªÆôÈÛ¶ÏÆ÷
+# å¼€å¯ç†”æ–­å™¨
 feign:
   hystrix:
     enabled: true
