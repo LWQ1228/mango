@@ -36,8 +36,17 @@
     </build>
     <modules>
         <module>../mango-admin</module>
+        <module>../mango-backup</module>
         <module>../mango-common</module>
+        <module>../mango-config</module>
+        <module>../mango-consumer</module>
         <module>../mango-core</module>
+        <module>../mango-hystrix</module>
+        <module>../mango-monitor</module>
+        <module>../mango-producer</module>
+        <module>../mango-producer2</module>
+        <module>../mango-zipkin</module>
+        <module>../mango-zuul</module>
     </modules>
 
 
