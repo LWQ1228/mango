@@ -3,11 +3,17 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import api from './http'
+import global from './utils/global'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
-Vue.config.productionTip = false
+//注册使用Element
 Vue.use(ElementUI)
+//注册使用api模块
+Vue.use(api)
+//挂载全局配置模块
+Vue.prototype.global = global
 
 /* eslint-disable no-new */
 new Vue({
