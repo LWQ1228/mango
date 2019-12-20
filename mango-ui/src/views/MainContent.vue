@@ -1,5 +1,6 @@
 <template>
-  <div id="main-container" class="main-container" :class="'position-left'">
+  <div id="main-container" class="main-container"
+       :class="$store.state.app.collapse?'position-collapse-left':'position-left'">
     <!-- 标签页 -->
     <div class="tab-container"></div>
     <!-- 主内容区域 -->
@@ -16,12 +17,9 @@
 <script>
   export default {
     data () {
-      return {
-      }
+      return {}
     },
-    methods: {
-
-    }
+    methods: {}
   }
 </script>
 
@@ -34,6 +32,7 @@
     right: 1px;
     bottom: 0px;
     background: rgba(67, 69, 70, 0.1);
+
     .main-content {
       position: absolute;
       top: 45px;
@@ -43,7 +42,12 @@
       padding: 5px;
     }
   }
+
   .position-left {
     left: 200px;
+  }
+
+  .position-collapse-left {
+    left: 65px;
   }
 </style>
