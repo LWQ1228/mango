@@ -95,7 +95,7 @@
 <style scoped>
   .personal-panel {
     font-size: 14px;
-    width: 285px;
+    width: 280px;
     text-align: center;
     border-color: rgba(180, 190, 190, 0.2);
     border-width: 1px;

@@ -42,7 +42,7 @@
         </el-menu-item>
         <el-menu-item index="3" v-popover:popover-message>
           <!-- 我的私信 -->
-          <el-badge :value="5" :max="99" class="badge" type="error">
+          <el-badge :value="5" :max="99" class="badge">
             <li style="color:#fff;" class="fa fa-envelope-o fa-lg"></li>
           </el-badge>
           <el-popover ref="popover-message" placement="bottom-end" trigger="click">
@@ -51,7 +51,7 @@
         </el-menu-item>
         <el-menu-item index="4" v-popover:popover-notice>
           <!-- 系统通知 -->
-          <el-badge :value="4" :max="99" class="badge" type="error">
+          <el-badge :value="4" :max="99" class="badge">
             <li style="color:#fff;" class="fa fa-bell-o fa-lg"></li>
           </el-badge>
           <el-popover ref="popover-notice" placement="bottom-end" trigger="click">
@@ -72,12 +72,12 @@
 
 <script>
   import {mapState} from 'vuex'
-  import mock from '../mock/index'
-  import Hamburger from '../components/Hamburger'
-  import ThemePicker from '../components/ThemePicker'
-  import NoticePanel from '../views/Core/NoticePanel'
-  import MessagePanel from '../views/Core/MessagePanel'
-  import PersonalPanel from '../views/Core/PersonalPanel'
+  import mock from '@/mock/index'
+  import Hamburger from '@/components/Hamburger'
+  import ThemePicker from '@/components/ThemePicker'
+  import NoticePanel from '@/views/Core/NoticePanel'
+  import MessagePanel from '@/views/Core/MessagePanel'
+  import PersonalPanel from '@/views/Core/PersonalPanel'
 
   export default {
     components: {
@@ -125,7 +125,7 @@
       var user = sessionStorage.getItem('user')
       if (user) {
         this.user.name = user
-        this.user.avatar = require('../assets/user.png')
+        this.user.avatar = require('@/assets/user.png')
       }
     },
     computed: {

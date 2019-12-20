@@ -2,6 +2,9 @@
   <el-form :model="loginForm" :rules="fieldRules" ref="loginForm" label-position="left" label-width="0px"
            class="demo-ruleForm login-container">
     <span class="tool-bar">
+      <!-- 主题切换 -->
+      <theme-picker style="float:right;" class="theme-picker" :default="themeColor"
+                    @onThemeChange="onThemeChange"></theme-picker>
     </span>
     <h2 class="title" style="padding-left:22px;">系统登录</h2>
     <el-form-item prop="account">
@@ -33,10 +36,15 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
   import Cookies from 'js-cookie'
+  import ThemePicker from '@/components/ThemePicker'
 
   export default {
     name: 'Login',
+    components: {
+      ThemePicker
+    },
     data () {
       return {
         loading: false,
@@ -65,18 +73,24 @@
           password: this.loginForm.password,
           captcha: this.loginForm.captcha
         }
-        this.$api.login.login(userInfo).then((res) => {  // 调用登录接口
+        this.$api.login.login(userInfo).then((res) => {
           if (res.msg != null) {
-            this.$message({message: res.msg, type: 'error'})
+            this.$message({
+              message: res.msg,
+              type: 'error'
+            })
           } else {
             Cookies.set('token', res.data.token) // 放置token到Cookie
             sessionStorage.setItem('user', userInfo.account) // 保存用户到本地会话
-            this.$store.commit('menuRouteLoaded', false) //要求重新加载导航菜单
+            this.$store.commit('menuRouteLoaded', false) // 要求重新加载导航菜单
             this.$router.push('/')  // 登录成功，跳转到主页
           }
           this.loading = false
         }).catch((res) => {
-          this.$message({message: res.message, type: 'error'})
+          this.$message({
+            message: res.message,
+            type: 'error'
+          })
         })
       },
       refreshCaptcha: function () {
@@ -84,10 +98,19 @@
       },
       reset () {
         this.$refs.loginForm.resetFields()
+      },
+      // 切换主题
+      onThemeChange: function (themeColor) {
+        this.$store.commit('setThemeColor', themeColor)
       }
     },
     mounted () {
       this.refreshCaptcha()
+    },
+    computed: {
+      ...mapState({
+        themeColor: state => state.app.themeColor
+      })
     }
   }
 </script>
@@ -109,6 +132,10 @@
       margin: 0px auto 30px auto;
       text-align: center;
       color: #505458;
+    }
+
+    .remember {
+      margin: 0px 0px 35px 0px;
     }
   }
 </style>
