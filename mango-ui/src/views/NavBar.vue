@@ -121,7 +121,7 @@
       }
 
       div {
-        font-size: 25px;
+        font-size: 22px;
         color: white;
         text-align: left;
         padding-left: 20px;

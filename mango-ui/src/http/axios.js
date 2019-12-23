@@ -1,7 +1,7 @@
 import axios from 'axios'
 import config from './config'
 import Cookies from 'js-cookie'
-import router from '../router'
+import router from '@/router'
 
 export default function $axios (options) {
   return new Promise((resolve, reject) => {

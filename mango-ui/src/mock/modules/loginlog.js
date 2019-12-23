@@ -23,7 +23,7 @@ export function findPage (params) {
   findPageData.data.totalSize = 50
   findPageData.data.content = content
   return {
-    url: 'system/loginlog/findPage',
+    url: 'system/loginLog/findPage',
     type: 'post',
     data: findPageData
   }
