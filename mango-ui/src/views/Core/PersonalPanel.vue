@@ -190,7 +190,7 @@
       // 获取在线用户数
       countOnlineUser () {
         let pageRequest = {pageNum: 1, pageSize: 10000000}
-        pageRequest.params = [{name: 'status', value: 'online'}]
+        pageRequest.params = {status: 'online'}
         this.$api.loginlog.findPage(pageRequest).then((res) => {
           this.onlineUser = res.data.content.length
         })
@@ -198,7 +198,7 @@
       // 获取访问次数
       countAccessTimes () {
         let pageRequest = {pageNum: 1, pageSize: 10000000}
-        pageRequest.params = [{name: 'status', value: 'login'}]
+        pageRequest.params = {status: 'login'}
         this.$api.loginlog.findPage(pageRequest).then((res) => {
           this.accessTimes = res.data.content.length + 1
         })
